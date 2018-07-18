@@ -17,6 +17,7 @@ pipeline {
             }
 
         }
+
         stage('DeployToStaging') {
 
             when {
@@ -59,9 +60,7 @@ pipeline {
 
                                         remoteDirectory: '/tmp',
                                         
-                                        execCommand:'pwd',
-                                                                      
-                                        execCommand:'whoami',
+                                        execCommand: 'pwd whoami',
 
                                         execCommand: 'sudo /usr/bin/systemctl stop train-schedule && rm -rf /opt/train-schedule/* && unzip /tmp/trainSchedule.zip -d /opt/train-schedule && sudo /usr/bin/systemctl start train-schedule'
 
