@@ -17,7 +17,6 @@ pipeline {
             }
 
         }
-
         stage('DeployToStaging') {
 
             when {
@@ -30,7 +29,7 @@ pipeline {
 
                 withCredentials([usernamePassword(credentialsId: 'webserver-login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
 
-,                    sshPublisher(
+                    sshPublisher(
 
                         failOnError: true,
 
