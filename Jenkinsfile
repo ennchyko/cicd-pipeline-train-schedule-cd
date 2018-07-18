@@ -44,9 +44,9 @@ pipeline {
 
                                 sshCredentials: [
 
-                                    username: "user",
+                                    username: "$USERNAME",
 
-                                    encryptedPassphrase: "123456"
+                                    encryptedPassphrase: "$USERPASS"
 
                                 ], 
 
@@ -108,9 +108,9 @@ pipeline {
 
                                 sshCredentials: [
 
-                                    username: "user",
+                                    username: "$USERNAME",
 
-                                    encryptedPassphrase: "123456"
+                                    encryptedPassphrase: "$USERPASS"
 
                                 ], 
 
