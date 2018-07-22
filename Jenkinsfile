@@ -1,3 +1,4 @@
+
 pipeline {
 
     agent any
@@ -17,6 +18,7 @@ pipeline {
             }
 
         }
+
         stage('DeployToStaging') {
 
             when {
@@ -27,7 +29,7 @@ pipeline {
 
             steps {
 
-                withCredentials([usernamePassword(credentialsId: 'webserver-login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
 
                     sshPublisher(
 
@@ -59,7 +61,8 @@ pipeline {
 
                                         remoteDirectory: '/tmp',
 
-                                        execCommand: 'pwd whoami sudo /usr/bin/systemctl stop train-schedule && sudo rm -rf /opt/train-schedule/* && sudo unzip /tmp/trainSchedule.zip -d /opt/train-schedule && sudo /usr/bin/systemctl start train-schedule'
+                                        execCommand: 'sudo /usr/bin/systemctl stop train-schedule && rm -rf /opt/train-schedule/* && unzip /tmp/trainSchedule.zip -d /opt/train-schedule && sudo /usr/bin/systemctl start train-schedule'
+
                                     )
 
                                 ]
@@ -90,7 +93,7 @@ pipeline {
 
                 milestone(1)
 
-                withCredentials([usernamePassword(credentialsId: 'webserver-login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
 
                     sshPublisher(
 
